@@ -40,9 +40,9 @@ class Register extends React.Component{
         const RadioItem = Radio.RadioItem;
 		return (
 			<div>
+				{/*redirectTo直接跳转到指定路径*/}
 				{this.props.redirectTo?<Redirect to={this.props.redirectTo} />:null}
 				<Logo></Logo>
-				<h2 className="title">注册页面</h2>
 				<WingBlank>
 					<List>
 						{this.props.msg?<p className='error-msg'>{this.props.msg}</p>:null}
