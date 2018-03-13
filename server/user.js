@@ -14,14 +14,13 @@ Router.get('/list',function(req, res){
 })
 
 Router.post('/register',function(req, res){
-	console.log(req.body)
 	const {user, pwd, type} = req.body
 	User.findOne({user:user},function(err, doc){
 		if(doc){// 查到用户名，重复了不可以注册
 			return res.json({code:1, msg:'用户名重复'})
 		}
 		const userModel = new User({user, type, pwd: md5Pwd(pwd)})
-        userModel.save(function(e, d){
+        userModel.save(function(e, d){//因为要存储一个用户Id,所以不能用User.create()，create生成之后才有id
 			if(e){
 				return res.json({code:1,msg:'后端出错了'})
 			}
@@ -33,7 +32,6 @@ Router.post('/register',function(req, res){
 })
 
 Router.post('/login',function(req, res){
-    console.log(req.body)
     const {user, pwd} = req.body
     User.findOne({user,pwd:md5Pwd(pwd)},_filter,function(err, doc){
         if(!doc){// 用户名不存在

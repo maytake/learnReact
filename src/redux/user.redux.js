@@ -20,7 +20,7 @@ export function user(state = initState, action) {
         case REGISTER_SUCCESS:
             return {...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload}
         case LOGIN_SUCESS:
-            return {...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload}
+            return {...state, msg: '', redirectTo: getRedirectPath(action.payload), isAuth: true, ...action.payload}//返回合并后的参数
         case LOAD_DATA :
             return {...state, ...action.payload}
         case ERROR_MSG:
@@ -80,20 +80,4 @@ export function login({user, pwd}) {
 
 export function loadData(userinfo){
     return {type:LOAD_DATA, payload:userinfo}
-}
-
-export function userinfo() {
-    axios.get('/user/info').then(res => {
-        if (res.status == 200) {
-
-            if (res.data.code == 0) {
-
-            } else {
-                this.props.loadData(res.data.data)
-                this.props.history.push('./login')
-            }
-        }
-        res.data
-    })
-
 }
