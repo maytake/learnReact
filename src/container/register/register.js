@@ -21,12 +21,9 @@ class Register extends React.Component{
 			repeatpwd:'',
 			type:'genius' // 或者boss
 		}
-		this.register = this.register.bind(this)
+
 	}
-    register(){
-		console.log(this.props)
-		this.props.history.push('/register')
-	}
+
     handleChange(key,val){
         this.setState({
             [key]:val

@@ -2,7 +2,7 @@ const express = require('express')
 const utils =  require('utility')//加密md5
 const Router = express.Router()
 const model = require('./model')
-const User = model.getModel('user')
+const User = model.getModel('user')//获取user数据表
 
 const _filter ={'pwd':0,'__v':0}
 
@@ -16,6 +16,7 @@ Router.get('/list',function(req, res){
 Router.post('/register',function(req, res){
 	const {user, pwd, type} = req.body
 	User.findOne({user:user},function(err, doc){
+	    console.log(doc)
 		if(doc){// 查到用户名，重复了不可以注册
 			return res.json({code:1, msg:'用户名重复'})
 		}
